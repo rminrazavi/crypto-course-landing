@@ -278,7 +278,7 @@ export default function Page() {
             Contact us directly on Telegram to purchase the course.
           </p>
           <a
-            href="https://t.me/danialkhan"
+            href="https://t.me/danialkhaan"
             target="_blank"
             className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-primary text-primary-foreground font-semibold"
           >
@@ -289,13 +289,13 @@ export default function Page() {
         {/* Footer */}
         <footer className="py-12 border-t border-border text-center">
           <div className="flex justify-center gap-6 mb-4">
-            <a href="https://x.com/danialkhan">
+            <a href="https://x.com/#">
               <IconBrandX />
             </a>
-            <a href="https://instagram.com/danialkhan">
+            <a href="https://instagram.com/#">
               <IconBrandInstagram />
             </a>
-            <a href="https://t.me/yourchannel">
+            <a href="https://t.me/danialkhaan">
               <IconBrandTelegram />
             </a>
           </div>
