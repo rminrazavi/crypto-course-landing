@@ -29,7 +29,7 @@ export default function Navbar() {
     <nav className="w-full bg-background border-b border-border fixed top-0 left-0 z-50">
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         {/* Logo */}
-        <div className="text-2xl font-bold text-foreground">CryptoPath</div>
+        <div className="text-2xl font-bold text-foreground">Cryptivio</div>
 
         {/* Desktop Links Centered */}
         <div className="hidden md:flex flex-1 justify-center gap-8">

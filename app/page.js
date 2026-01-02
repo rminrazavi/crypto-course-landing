@@ -300,7 +300,7 @@ export default function Page() {
             </a>
           </div>
           <p className="text-sm text-muted-foreground">
-            © 2026 CryptoPath. All rights reserved.
+            © 2026 Cryptivio. All rights reserved.
           </p>
         </footer>
       </div>
