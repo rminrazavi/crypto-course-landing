@@ -4,10 +4,7 @@
 import React from "react";
 import { Spotlight } from "@/components/ui/spotlight";
 import { GridBackground } from "@/components/ui/grid-background";
-import { Navbar, NavBody, NavItems } from "@/components/ui/navbar";
 import {
-  IconSun,
-  IconMoon,
   IconBrandTelegram,
   IconBrandX,
   IconBrandInstagram,
@@ -15,10 +12,9 @@ import {
 import { LogoMarquee } from "@/components/ui/logo-marquee";
 import { CardHoverEffect } from "@/components/ui/card-hover-effect";
 import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-with-collision";
-import { WobbleCard } from "@/components/ui/wobble-card";
+import Navbar from "@/components/ui/navbar";
 
 export default function Page() {
-  const [dark, setDark] = React.useState(true);
   const learnItems = [
     {
       title: "Start Smart: Build Your Crypto Foundation",
@@ -59,35 +55,17 @@ export default function Page() {
   ];
 
   return (
-    <div className={dark ? "dark" : ""}>
+    <div>
       <div className="min-h-screen bg-background text-foreground relative overflow-hidden">
         {/* Background */}
         <GridBackground />
         <Spotlight className="-top-40 left-0 md:left-60" fill="white" />
 
         {/* Navbar */}
-        <Navbar>
-          <NavBody>
-            <div className="font-bold text-xl">CryptoPath</div>
-            <NavItems
-              items={[
-                { name: "Features", link: "#features" },
-                { name: "Course", link: "#course" },
-                { name: "Testimonials", link: "#testimonials" },
-                { name: "Contact", link: "#cta" },
-              ]}
-            />
-            <button
-              onClick={() => setDark(!dark)}
-              className="p-2 rounded-full border border-border"
-            >
-              {dark ? <IconSun size={18} /> : <IconMoon size={18} />}
-            </button>
-          </NavBody>
-        </Navbar>
+        <Navbar />
 
         {/* Hero */}
-        <section className="pt-32 pb-24 text-center relative z-10">
+        <section id="hero" className="pt-32 pb-24 text-center relative z-10">
           <div className="flex justify-center mb-6">
             <img
               src="/ETH.png"
@@ -158,68 +136,65 @@ export default function Page() {
         {/* Course Intro */}
         <section id="course" className="relative py-24 overflow-hidden">
           {/* Background Beams */}
-          <BackgroundBeamsWithCollision
-            className={"py-24 max-w-6xl mx-auto px-6 rounded-2xl"}
-          >
-            <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                Who This Course Is For
-              </h2>
+          <BackgroundBeamsWithCollision className="absolute top-0 left-0 w-full h-full pointer-events-none" />
 
-              <p className="text-muted-foreground text-lg max-w-3xl mx-auto mb-12">
-                This course is designed to give you a clear, practical, and
-                confidence-building path into crypto and Web3 — without
-                confusion or hype.
-              </p>
+          {/* Content */}
+          <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6">
+              Who This Course Is For
+            </h2>
 
-              <div className="grid gap-6 max-w-3xl mx-auto text-left">
-                {[
-                  [
-                    "🧠",
-                    "Beginners",
-                    "who want a clear, jargon-free introduction to crypto and blockchain",
-                  ],
-                  [
-                    "💼",
-                    "Professionals",
-                    "looking to understand Web3 for career or investment opportunities",
-                  ],
-                  [
-                    "🎮",
-                    "Tech-savvy users",
-                    "curious about NFTs, DEXs, and decentralized platforms",
-                  ],
-                  [
-                    "📱",
-                    "Telegram users",
-                    "interested in crypto gifts, TON wallets, and trading inside chat apps",
-                  ],
-                  [
-                    "🚀",
-                    "Anyone",
-                    "who wants to learn real skills, avoid scams, and confidently navigate the crypto space",
-                  ],
-                ].map(([emoji, title, text]) => (
-                  <div key={title} className="flex items-start gap-3">
-                    <span className="text-2xl">{emoji}</span>
-                    <p className="text-muted-foreground">
-                      <span className="font-medium text-foreground">
-                        {title}
-                      </span>{" "}
-                      {text}
-                    </p>
-                  </div>
-                ))}
-              </div>
+            <p className="text-muted-foreground text-base sm:text-lg max-w-3xl mx-auto mb-12">
+              This course is designed to give you a clear, practical, and
+              confidence-building path into crypto and Web3 — without confusion
+              or hype.
+            </p>
 
-              <div className="mt-12 text-muted-foreground">
-                <p className="font-medium text-foreground">
-                  No prior experience required.
-                </p>
-                <p>Just curiosity — and a desire to learn.</p>
-              </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-3xl mx-auto text-left">
+              {[
+                [
+                  "🧠",
+                  "Beginners",
+                  "who want a clear, jargon-free introduction to crypto and blockchain",
+                ],
+                [
+                  "💼",
+                  "Professionals",
+                  "looking to understand Web3 for career or investment opportunities",
+                ],
+                [
+                  "🎮",
+                  "Tech-savvy users",
+                  "curious about NFTs, DEXs, and decentralized platforms",
+                ],
+                [
+                  "📱",
+                  "Telegram users",
+                  "interested in crypto gifts, TON wallets, and trading inside chat apps",
+                ],
+                [
+                  "🚀",
+                  "Anyone",
+                  "who wants to learn real skills, avoid scams, and confidently navigate the crypto space",
+                ],
+              ].map(([emoji, title, text]) => (
+                <div key={title} className="flex items-start gap-3">
+                  <span className="text-2xl sm:text-3xl">{emoji}</span>
+                  <p className="text-muted-foreground text-sm sm:text-base">
+                    <span className="font-medium text-foreground">{title}</span>{" "}
+                    {text}
+                  </p>
+                </div>
+              ))}
             </div>
-          </BackgroundBeamsWithCollision>
+
+            <div className="mt-12 text-muted-foreground text-sm sm:text-base">
+              <p className="font-medium text-foreground">
+                No prior experience required.
+              </p>
+              <p>Just curiosity — and a desire to learn.</p>
+            </div>
+          </div>
         </section>
 
         {/* Testimonials */}
@@ -303,7 +278,7 @@ export default function Page() {
             Contact us directly on Telegram to purchase the course.
           </p>
           <a
-            href="https://t.me/yourchannel"
+            href="https://t.me/danialkhan"
             target="_blank"
             className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-primary text-primary-foreground font-semibold"
           >
@@ -314,10 +289,10 @@ export default function Page() {
         {/* Footer */}
         <footer className="py-12 border-t border-border text-center">
           <div className="flex justify-center gap-6 mb-4">
-            <a href="#">
+            <a href="https://x.com/danialkhan">
               <IconBrandX />
             </a>
-            <a href="#">
+            <a href="https://instagram.com/danialkhan">
               <IconBrandInstagram />
             </a>
             <a href="https://t.me/yourchannel">
