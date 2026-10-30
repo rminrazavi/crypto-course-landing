@@ -7,9 +7,9 @@ import { IconCube, IconWorld, IconTrendingUp } from "@tabler/icons-react";
 
 export function CardHoverEffect({ items = [], className }) {
   const icons = [
-    <IconCube size={28} />,
-    <IconWorld size={28} />,
-    <IconTrendingUp size={28} />,
+    <IconCube key="cube" size={28} aria-hidden="true" />,
+    <IconWorld key="world" size={28} aria-hidden="true" />,
+    <IconTrendingUp key="trend" size={28} aria-hidden="true" />,
   ];
 
   return (
