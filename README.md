@@ -1,36 +1,40 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Cryptivio – Crypto & Web3 course landing page
 
-## Getting Started
+Next.js (App Router) landing page, available in **English** (`/`) and **Persian** (`/fa`, RTL).
 
-First, run the development server:
+## Development
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev     # http://localhost:3000  and  http://localhost:3000/fa
+npm run build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Optional: set `NEXT_PUBLIC_SITE_URL` (default `https://cryptivio.xyz`) if the production domain changes. It feeds canonical/hreflang tags, sitemap, robots and JSON-LD.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## How the two languages work
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| URL   | Language | Layout            |
+| ----- | -------- | ----------------- |
+| `/`   | English  | `app/(en)/`       |
+| `/fa` | Persian  | `app/fa/` (RTL)   |
 
-## Learn More
+- All copy lives in `lib/i18n/en.js` and `lib/i18n/fa.js` (same keys in both). Edit text there, not in components.
+- `components/landing.jsx` renders the page from a dictionary; both routes use it.
+- Each language has its own root layout so `<html lang dir>` is correct. Persian uses self-hosted Vazirmatn (`lib/fonts/`, OFL license included).
+- No automatic language redirect on purpose: crawlers see both versions, users switch with the navbar button.
 
-To learn more about Next.js, take a look at the following resources:
+### Adding another language
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Add `lib/i18n/<code>.js` and register it in `lib/i18n/index.js`.
+2. Add it to `LOCALES` / `LOCALE_META` in `lib/site.js`.
+3. Add `app/<code>/layout.js` + `page.js` (copy `app/fa/`).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The sitemap, hreflang tags and JSON-LD pick it up automatically.
 
-## Deploy on Vercel
+## SEO setup
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Per-language `<title>`, description, canonical, hreflang (`en`, `fa`, `x-default`), Open Graph and Twitter tags: `lib/seo.js`
+- `app/sitemap.js` (with hreflang alternates) and `app/robots.js`
+- JSON-LD (`Organization`, `WebSite`, `WebPage`, `Course`) in `components/landing.jsx`
+- Share image: `public/og.png` (1200×630)

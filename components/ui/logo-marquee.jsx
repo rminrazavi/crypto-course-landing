@@ -10,7 +10,12 @@ export function LogoMarquee({ logos = [], className }) {
   const repeatedLogos = [...logos, ...logos];
 
   return (
-    <div className={cn("relative w-full overflow-hidden py-6", className)}>
+    // dir="ltr": the marquee animates along the physical X axis, so it must not
+    // be mirrored on RTL (Persian) pages, otherwise it would scroll into blank space.
+    <div
+      dir="ltr"
+      className={cn("relative w-full overflow-hidden py-6", className)}
+    >
       {/* Fade edges */}
       <div className="pointer-events-none absolute left-0 top-0 h-full w-20 bg-gradient-to-r from-background to-transparent z-10" />
       <div className="pointer-events-none absolute right-0 top-0 h-full w-20 bg-gradient-to-l from-background to-transparent z-10" />
@@ -20,6 +25,7 @@ export function LogoMarquee({ logos = [], className }) {
         {repeatedLogos.map((logo, i) => (
           <div
             key={i}
+            aria-hidden={i >= logos.length ? "true" : undefined}
             className="flex-shrink-0 text-lg md:text-xl font-semibold text-muted-foreground opacity-80"
           >
             {logo}
